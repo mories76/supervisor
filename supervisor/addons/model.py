@@ -55,6 +55,7 @@ from ..const import (
     ATTR_STDIN,
     ATTR_TIMEOUT,
     ATTR_TMPFS,
+    ATTR_SHM_SIZE,
     ATTR_UDEV,
     ATTR_URL,
     ATTR_VERSION,
@@ -295,6 +296,11 @@ class AddonModel(CoreSysAttributes):
     def tmpfs(self) -> Optional[str]:
         """Return tmpfs of add-on."""
         return self.data.get(ATTR_TMPFS)
+
+    @property
+    def shm_size(self) -> Optional[str]:
+        """Return shm_size of add-on."""
+        return self.data.get(ATTR_SHM_SIZE)
 
     @property
     def environment(self) -> Optional[Dict[str, str]]:

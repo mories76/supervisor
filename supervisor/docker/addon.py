@@ -358,6 +358,7 @@ class DockerAddon(DockerInterface):
             environment=self.environment,
             volumes=self.volumes,
             tmpfs=self.tmpfs,
+            shm_size=self.addon.shm_size
         )
 
         self._meta = docker_container.attrs
