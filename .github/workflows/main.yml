@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     
     if: github.actor == github.event.repository.owner.login
-    
-        
+         
     steps:
       - name: Checkout shm_size branch
         uses: actions/checkout@v2
@@ -21,14 +20,17 @@ jobs:
       - name: Pull the Hassio Builder
         run: docker pull homeassistant/amd64-builder
         
-      - name: check help file
-        run: docker run --rm --privileged homeassistant/amd64-builder --help
+      #- name: check help file
+      #  run: docker run --rm --privileged homeassistant/amd64-builder --help
         
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Docker login
+        run: docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
+        
+      - name: Build
+        run: docker run --rm --privileged \
+             -v ~/.docker:/root/.docker \
+             -v $(pwd):/data:ro \
+             -v /var/run/docker.sock:/run/docker.sock:rw \
+             homeassistant/amd64-builder --amd64 --no-latest \
+             --generic shm_size -t /data \
+             -d mories -i supervisor
