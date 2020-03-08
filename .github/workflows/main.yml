@@ -2,7 +2,8 @@ name: Test
 
 on:
   watch
-    types: [started]
+    types: 
+      - started
 
 jobs:
   build:
