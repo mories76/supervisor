@@ -30,7 +30,7 @@ jobs:
         run: docker run --rm --privileged \
              -v ~/.docker:/root/.docker \
              -v $(pwd):/data:ro \
-             -v /var/run/docker.sock:/run/docker.sock:rw \
+             -v /run/docker.sock:/run/docker.sock:rw \
              homeassistant/amd64-builder --amd64 --no-latest \
              --generic shm_size -t /data \
              -d mories -i supervisor
