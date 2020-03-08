@@ -10,9 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     
     if: github.actor == github.event.repository.owner.login
+    
         
     steps:
-    # Runs a single command using the runners shell
+      - name: Checkout shm_size branch
+        uses: actions/checkout@v2
+        with:
+          ref: shm_size
+            
+      - name: Pull the Hassio Builder
+        run: docker pull homeassistant/amd64-builder
+        
+      - name: check help file
+        run: docker run --rm --privileged homeassistant/amd64-builder --help
+        
       - name: Run a one-line script
         run: echo Hello, world!
 
