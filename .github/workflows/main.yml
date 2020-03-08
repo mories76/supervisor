@@ -18,19 +18,20 @@ jobs:
           ref: shm_size
             
       - name: Pull the Hassio Builder
-        run: docker pull homeassistant/amd64-builder
+        run: sudo docker pull homeassistant/amd64-builder
         
       #- name: check help file
       #  run: docker run --rm --privileged homeassistant/amd64-builder --help
         
       - name: Docker login
-        run: docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
+        run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
         
       - name: Build
-        run: docker run --rm --privileged \
+        run: sudo docker run --rm --privileged \
              -v ~/.docker:/root/.docker \
              -v $(pwd):/data:ro \
              -v /run/docker.sock:/run/docker.sock:rw \
              homeassistant/amd64-builder --amd64 --no-latest \
-             --generic shm_size -t /data \
-             -d mories -i supervisor
+             -t /data \
+             # --generic shm_size \
+             # -d mories -i supervisor
