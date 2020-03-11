@@ -31,7 +31,7 @@ jobs:
          
       - name: Build
         run: sudo docker run --rm --privileged
-               homeassistant/amd64-builder --amd64 --no-latest
+               homeassistant/amd64-builder --all --no-latest
                -v /run/docker.sock:/run/docker.sock:rw
                -v ~/.docker:/root/.docker
                -v ${PWD}:/data:ro
