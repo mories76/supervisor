@@ -17,11 +17,11 @@ jobs:
       #  with:
       #    ref: shm_size
             
-      #- name: Pull the Hassio Builder
-      #  run: sudo docker pull homeassistant/amd64-builder
+      - name: Pull the Hassio Builder
+        run: sudo docker pull homeassistant/amd64-builder
         
-      #- name: check help file
-      #  run: docker run --rm --privileged homeassistant/amd64-builder --help
+      - name: check help file
+        run: docker run --rm --privileged homeassistant/amd64-builder --help
         
       #- name: Docker login
       #  run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
