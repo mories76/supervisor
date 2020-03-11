@@ -27,7 +27,7 @@ jobs:
       #  run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
         
       - name: Test 1
-      run: echo $(pwd)
+        run: echo $(pwd)
         
       #- name: Test 2
       #  run: echo $(PWD)
