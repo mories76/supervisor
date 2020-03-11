@@ -37,10 +37,13 @@ jobs:
          
       - name: Build
         run: sudo docker run --rm --privileged \
-             -v ~/.docker:/root/.docker \
-             -v ${PWD}:/data:ro \
              homeassistant/amd64-builder --amd64 --no-latest \
              -t /data \
+             --generic shm_size \
+             -d mories -i supervisor
+              
+             #-v ~/.docker:/root/.docker \
+             #-v ${PWD}:/data:ro \
               
              #-v /run/docker.sock:/run/docker.sock:rw \
              # --generic shm_size \
