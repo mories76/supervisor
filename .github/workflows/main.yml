@@ -12,10 +12,10 @@ jobs:
     if: github.actor == github.event.repository.owner.login
          
     steps:
-      #- name: Checkout shm_size branch
-      #  uses: actions/checkout@v2
-      #  with:
-      #    ref: shm_size
+      - name: Checkout shm_size branch
+        uses: actions/checkout@v2
+        with:
+          ref: shm_size
             
       - name: Pull the Hassio Builder
         run: sudo docker pull homeassistant/amd64-builder
@@ -23,26 +23,18 @@ jobs:
       #- name: check help file
       #  run: docker run --rm --privileged homeassistant/amd64-builder --help
         
-      #- name: Docker login
-      #  run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
+      - name: Docker login
+        run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
         
       - name: Test 1
-        run: echo $(pwd)
-        
-      #- name: Test 2
-      #  run: echo $(PWD)
-        
-      #- name: Test 3
-      #  run: echo ${PWD}      
+        run: echo $(pwd)  
          
       - name: Build
         run: sudo docker run --rm --privileged
                homeassistant/amd64-builder --amd64 --no-latest
+               -v /run/docker.sock:/run/docker.sock:rw
+               -v ~/.docker:/root/.docker
+               -v ${PWD}:/data:ro
                -t /data
                --generic shm_size
                -d mories -i supervisor
-               -v ~/.docker:/root/.docker
-               -v ${PWD}:/data:ro
-              
-             #-v /run/docker.sock:/run/docker.sock:rw \
-
