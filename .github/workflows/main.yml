@@ -20,20 +20,20 @@ jobs:
       - name: Pull the Hassio Builder
         run: sudo docker pull homeassistant/amd64-builder
         
-      - name: check help file
-        run: docker run --rm --privileged homeassistant/amd64-builder --help
+      #- name: check help file
+      #  run: docker run --rm --privileged homeassistant/amd64-builder --help
         
       #- name: Docker login
       #  run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
         
       - name: Test 1
-        run: echo $(pwd)
+      run: echo $(pwd)
         
-      - name: Test 2
-        run: echo $(PWD)
+      #- name: Test 2
+      #  run: echo $(PWD)
         
-      - name: Test 3
-        run: echo ${PWD}      
+      #- name: Test 3
+      #  run: echo ${PWD}      
          
       - name: Build
         run: sudo docker run --rm --privileged \
