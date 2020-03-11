@@ -27,14 +27,17 @@ jobs:
         run: sudo docker login -u ${{ secrets.docker_hub_username }} -p ${{ secrets.docker_hub_password }}
         
       - name: Test 1
-        run: echo $(pwd)  
+        run: echo $(pwd)
+        
+      - name: Test 2
+        run: ls
          
-      - name: Build
-        run: sudo docker run --rm --privileged
-               homeassistant/amd64-builder --all --no-latest
-               -v /run/docker.sock:/run/docker.sock:rw
-               -v ~/.docker:/root/.docker
-               -v ${PWD}:/data:ro
-               -t /data
-               --generic shm_size
-               -d mories -i supervisor
+      #- name: Build
+      #  run: sudo docker run --rm --privileged
+      #         homeassistant/amd64-builder --all --no-latest
+      #         -v /run/docker.sock:/run/docker.sock:rw
+      #         -v ~/.docker:/root/.docker
+      #         -v ${PWD}:/data:ro
+      #         -t /data
+      #         --generic shm_size
+      #         -d mories -i supervisor
