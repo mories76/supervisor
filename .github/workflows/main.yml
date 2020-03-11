@@ -32,12 +32,12 @@ jobs:
       - name: Test 2
         run: ls
          
-      #- name: Build
-      #  run: sudo docker run --rm --privileged
-      #         homeassistant/amd64-builder --all --no-latest
-      #         -v /run/docker.sock:/run/docker.sock:rw
-      #         -v ~/.docker:/root/.docker
-      #         -v ${PWD}:/data:ro
-      #         -t /data
-      #         --generic shm_size
-      #         -d mories -i supervisor
+      - name: Build
+        run: sudo docker run --rm --privileged
+               homeassistant/amd64-builder --amd64 --no-latest
+               -v /run/docker.sock:/run/docker.sock:rw
+               -v ~/.docker:/root/.docker
+               -v ${PWD}/supervisor:/data:ro
+               -t /data
+               --generic shm_size
+               -d mories -i supervisor
